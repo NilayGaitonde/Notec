@@ -2,25 +2,54 @@ const mysql = require("mysql");
 const http = require("http")
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+
 
 const app = new express()
 app.use(bodyParser.json());
+app.use(express.urlencoded({extended: true}));
+app.use(cors());
 var conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     // YOUR DIFFERENT CONFIG GOES HERE
     password: '1234',
-    database: 'nodemysql'
+    database: 'notec'
 });
 conn.connect((err)=>{
     if(err) throw err;
     console.log("Connection successful");
 });
 
-var server = http.createServer(function(req,res){
-    res.write("Hello world");
-    res.end();
+app.listen(3000,function(err){
+    if(typeof(err) == "undefined"){
+        console.log("we're good");
+    }
 })
-server.listen(3000)
 console.log("listening on http://localhost:3000/")
-
+app.post('/login',function(req,res){
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    console.log(req);
+    request = req.body
+    var val = [
+        request.firstName,
+        request.lastName,
+        request.email,
+        request.password,
+        request.phone,
+        date
+    ];
+    console.log(request);
+    console.log(date);
+    conn.query(`INSERT INTO users(fName,lName,emailID,password,phone,dateCreated) VALUES (?) `,[val],function(err,result){
+        if(err) throw err;
+        res.send('200')
+        console.log("Data added "+result.affectedRows+" rows(s) affected");
+    });
+})
+// app.get('/sandbox',function(req,res){
+//     response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8081");
+//     var request = req
+//     console.log(request);
+// });
