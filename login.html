@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Validation</title>
+    <title>Login</title>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <script>
-        var app = angular.module("formValidation", []).controller("formValidationController", function ($scope, $http) {
+        var app = angular.module("login", []).controller("loginController", function ($scope, $http) {
             $scope.submitForm = function () {
                 if ($scope.userForm.$valid) {
                     alert("Form is valid");
@@ -52,56 +52,18 @@
     </style>
 </head>
 
-<body ng-app="formValidation" ng-controller="formValidationController">
-    <form name="userForm" novalidate ng-submit="submitForm()">
-
-        <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" ng-model="user.firstName" ng-required="true">
-        <span ng-show="userForm.firstName.$touched && userForm.firstName.$error.required" class="error">First name is
-            required</span>
-        <br /><br />
-
-        <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" ng-model="user.lastName" ng-minlength="3" ng-maxlength="10">
-        <span ng-show="userForm.lastName.$touched && userForm.lastName.$error.minlength">A minimum of 3 characters are
-            required</span>
-        <span ng-show="userForm.lastName.$touched && userForm.lastName.$error.maxlength" class="error">A maximum of 10
-            characters are allowed</span>
-        <br /><br />
-
+<body ng-app="login" ng-controller="loginController">
+    <form name="userForm" novalidate ng-submit="submitForm">
+        <label for="email">Email:</label>
+        <input type="email" name="email" ng-model="user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+        <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error">Wrong
+            pattern</span><br /><br />
         <label for="password">Password:</label>
         <input type="{{passType}}" name="password" ng-model="user.password"
             ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/">
         <input type="checkbox" name="passwordVisible" id="passwordVisible" ng-model="passwordVisible"
             ng-click="showHidePassword()" />
-        <label for="checkbox" ng-if="passwordVisible">Hide password</label>
-        <label for="checkbox" ng-if="!passwordVisible">Show password</label>
-        <span
-            ng-show="userForm.password.$touched && userForm.password.$error.pattern && userForm.password.$error.pattern"
-            class="error">Password must contain at least one letter and one number, and at least 8
-            characters</span><br /><br />
-
-        <label for="confirmPassword">Confirm password:</label>
-        <input type="password" name="cPassword" id="cPassword" ng-model="cPassword">
-        <span ng-show="cPassword!=user.password" class="error">Passwords do not match</span>
-        <br /><br />
-        <label for="email">Email:</label>
-        <input type="email" name="email" ng-model="user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-        <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error">Wrong
-            pattern</span><br /><br />
-
-        <label for="phone">Phone:</label>
-        <input type="text" name="phone" ng-model="user.phone" ng-pattern="/^[0-9]{10}$/">
-        <span ng-show="userForm.phone.$touched && userForm.phone.$error.pattern" class="error">Wrong
-            pattern</span><br /><br />
-
-        <button type="submit">Submit</button>
-        <h2>Your details are:</h2>
-        <p>Name: {{user.firstName}} {{user.lastName}}</p>
-        <p>Email: {{user.email}}</p>
-        <p>Phone: {{user.phone}}</p>
     </form>
-
 </body>
 
 </html>

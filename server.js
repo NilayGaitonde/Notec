@@ -27,7 +27,7 @@ app.listen(3000,function(err){
     }
 })
 console.log("listening on http://localhost:3000/")
-app.post('/login',function(req,res){
+app.post('/signin',function(req,res){
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     console.log(req);
@@ -48,6 +48,19 @@ app.post('/login',function(req,res){
         console.log("Data added "+result.affectedRows+" rows(s) affected");
     });
 })
+app.post('/login',function(req,res){
+    request = req.body
+    console.log(request);
+    conn.query(`SELECT * FROM users WHERE emailID = ? AND password = ? `,[request.email,request.password],function(err,result){
+        if(err) throw err;
+        else if (result.length == 0){
+            res.status(300).send(result);
+        }
+        else{
+            res.status(200).send(result);
+        }
+    });
+});
 // app.get('/sandbox',function(req,res){
 //     response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8081");
 //     var request = req
