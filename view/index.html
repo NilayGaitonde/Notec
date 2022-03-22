@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Notec</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+  <!-- <script src="app.component.js"></script> -->
+  <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
+  <script>
+    var app = angular.module("Notec", []).controller("markdownController", function ($scope) {
+      $scope.convertToMD = function () {
+        $scope.markdown = marked.parse(document.getElementById("input").value);
+        console.log($scope.markdown);
+        document.getElementById("output").innerHTML = $scope.markdown;
+      };
+    })
+  </script>
+
+</head>
+
+<body ng-app="Notec" ng-controller="markdownController">
+  <div class="textpanel">
+    <svg  viewBox="120 -70 900 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+      <g transform="translate(149.20240020751953, -12.923286437988281)">
+        <path class="blob" d="M429.5,318Q386,386,318,440Q250,494,172,450Q94,406,93,328Q92,250,95,174Q98,98,174,96.5Q250,95,311.5,111Q373,127,423,188.5Q473,250,429.5,318Z" fill="#97D8EE"></path>
+      </g>
+    </svg>
+    <textarea id="input" ng-model="input" ng-change="convertToMD()" ></textarea>
+    <div id="output"></div>
+  </div>
+  <nav class="nav">
+    
+      <button class="more">
+        <div class="nav_ex">
+      <span span class="iconify" data-icon="bxs:right-arrow" style="color: white;"></span>
+     </div> 
+    </button>
+
+  
+    <ul class="'nav_list">
+      <li nav_listiteam>
+        <a href="#">
+          <span class="iconify" data-icon="clarity:edit-solid" style="color: white;"></span>
+        </a>
+      </li>
+      <li nav_listiteam>
+        <a href="#">
+          <span class="iconify" data-icon="cil:heart" style="color: white;"></span>
+        </a>
+      </li>
+      <li nav_listiteam>
+        <a href="#">
+          <span class="iconify" data-icon="ic:baseline-create-new-folder" style="color: white;"></span>
+        </a>
+      </li>
+      <li nav_listiteam>
+        <a href="#">
+          <span class="iconify" data-icon="ant-design:search-outlined" style="color: white;"></span>
+        </a>
+      </li>
+      <li nav_listiteam>
+        <a href="#">
+          <span class="iconify" data-icon="fluent:arrow-sort-24-filled" style="color: white;"></span>
+        </a>
+      </li>
+      <li nav_listiteam>
+        <a href="/signin.html">
+          <span class="iconify" data-icon="ic:sharp-account-circle" style="color: white;"></span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</body>
+
+</html>
