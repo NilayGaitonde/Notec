@@ -10,6 +10,7 @@
     <script>
         var app = angular.module("signin", []).controller("signinController", function ($scope, $http) {
             $scope.submitForm = function () {
+                console.log("Hello world");
                 if ($scope.userForm.$valid) {
                     alert("Form is valid");
                     console.log($scope.user);

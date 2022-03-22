@@ -10,6 +10,7 @@
     <script>
         var app = angular.module("login", []).controller("loginController", function ($scope, $http) {
             $scope.submitForm = function () {
+                console.log("Hello world");
                 if ($scope.userForm.$valid) {
                     alert("Form is valid");
                     console.log($scope.user);
@@ -53,7 +54,7 @@
 </head>
 
 <body ng-app="login" ng-controller="loginController">
-    <form name="userForm" novalidate ng-submit="submitForm">
+    <form name="userForm" novalidate ng-submit="submitForm()">
         <label for="email">Email:</label>
         <input type="email" name="email" ng-model="user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
         <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error">Wrong
@@ -63,6 +64,7 @@
             ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/">
         <input type="checkbox" name="passwordVisible" id="passwordVisible" ng-model="passwordVisible"
             ng-click="showHidePassword()" />
+        <button type="submit">Submit</button>
     </form>
 </body>
 
