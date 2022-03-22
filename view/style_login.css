@@ -1,0 +1,85 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.login{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    background-color: #ffffff;
+    width: 400px;
+    height: 400px;
+    border-radius: 1.5em;
+    box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+form {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 3em;
+    height: 320px;
+    border-radius: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+  }
+  form p {
+    font-weight: 500;
+    color: rgb(83, 5, 94);
+    opacity: 0.7;
+    font-size: 3rem;
+    margin-top: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+button{
+
+    cursor: pointer;
+    background-image: linear-gradient(to right, #8b0967 20%, #3c0891 71%);
+    color: #ffffff;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius:2rem;
+    padding: 0.5rem 1rem;
+    font-size: 19px;
+}
+.error {
+    color: rgb(126, 17, 17);
+    font-weight: bold;
+}
+
+input.ng-pristine {
+    background-color: rgba(255, 255, 255, 0.658);
+}
+
+input.ng-touched.ng-invalid {
+    background-color: rgb(129, 13, 13);
+
+}
+/* input{
+    padding: 0.7rem;
+    border-radius: 2rem;
+    margin: 8px 0;
+    box-sizing: border-box;
+    width: 50%;
+} */
+form input {
+    background: transparent;
+    width: 200px;
+    padding: 1em;
+    margin-bottom: 2em;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5000px;
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+    box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
