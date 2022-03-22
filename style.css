@@ -1,11 +1,28 @@
 body{
     background-color: #240656;
 }
-.blob{
+/* .blob{
     position: absolute;
     opacity: 20%;
     -webkit-filter: blur(4px);
 
+} */
+.textpanel {
+    position: relative;
+}
+.textpanel img {
+    display: block;
+}
+.textpanel textarea {
+    position: absolute;
+    left: 50px;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.5);
+}
+.output {
+    position:absolute;
+    background-color: #f5eff8;
 }
 ul {
     list-style-type: none;
