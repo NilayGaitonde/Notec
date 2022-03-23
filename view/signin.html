@@ -45,19 +45,20 @@
         }
 
         input.ng-pristine {
-            background-color: rgba(89, 89, 255, 0.658);
+            background-color: rgb(137, 237, 255);
         }
 
         input.ng-touched.ng-invalid {
-            background-color: red;
+            background-color: rgb(212, 5, 5);
         }
     </style>
 </head>
 
 <body ng-app="signin" ng-controller="signinController">
+    <h1>Notec</h1>
+    <div class="signin"> ></div>
     <form name="userForm" novalidate ng-submit="submitForm()">
-        <h1 class="heading">Sign In</h1>
-
+        <h4>Sign In</h4
         <label for="firstName" {text-align: right;}>First Name:</label>
         <input class = "input" type="text" name="firstName" ng-model="user.firstName" ng-required="true">
         <span ng-show="userForm.firstName.$touched && userForm.firstName.$error.required" class="error">First name is
