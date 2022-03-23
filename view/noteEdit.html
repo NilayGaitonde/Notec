@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <title>View Your note</title>
+    <link rel="stylesheet" href="new_style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         function getUrlVars() {
@@ -46,11 +47,17 @@
 </head>
 
 <body ng-app="notes" ng-controller="noteController">
-    <h1>title:</h1><br>
-    <input type="text" name="title" id="title" ng-model="note.title">
-    <h1>Body:</h1>
+
+    Change title:<br>
+    <input type="text" name="title" id="title" ng-model="note.title"><br><br>
+    Edit your notes here:<br        >
     <textarea id="body" name="body" ng-model="note.body" rows="10" cols="50"></textarea>
-    </div>
+    <br><br>
+    <div id="buttons">
+        <button type="submit">Save</button>
+        <button type="reset">Reset</button>
+    </div>    
+</div>
 </body>
 
 </html>

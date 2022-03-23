@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="new_style.css">
     <title>New Note</title>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -23,7 +24,7 @@
                 console.log($scope.note);
                 $http({
                     method: 'POST',
-                    url: 'http://localhost:8000/new',
+                    url: 'http://localhost:3001/new',
                     data: $scope.note
                 }).then(function (httpresponse) {
                     console.log('response:' + httpresponse);
@@ -34,12 +35,15 @@
 </head>
 <body ng-app="notes" ng-controller="noteController">
     <form ng-submit="saveForm()" novalidate name="form">
-        Your note title: <input type="text" name="title" id="title" ng-model="title"> <br>
-        Your note body: <br>
+        Title: <br> <input type="text" name="title" id="title" ng-model="title"> <br>
+        <br>
+        Your Notes! <br>
         <textarea name="body" id="body" cols="30" rows="10" ng-model="body" ng-change="convertToMD()"></textarea>
-        <div id="output"></div>
-        <button type="submit">Save</button>
-        <button type="reset">Reset</button>
+        <div id="output"></div><br>
+        <div id="buttons">
+            <button type="submit">Save</button>
+            <button type="reset">Reset</button>
+        </div>
     </form>
 </body>
 </html>
