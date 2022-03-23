@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
+    <script>
+        var app = angular.module("home", []).controller("homeController", function ($scope, $http) {
+            $scope.i=0;
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3001/index',
+            }).then(function successCallback(response) {
+                $scope.data = response.data;
+                console.log($scope.data);
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+            $scope.convertToMD = function (id) {
+                console.log($scope.i);
+                console.log(id);
+                document.getElementById(id).innerHTML = $scope.data[$scope.i].body;
+                $scope.i=$scope.i+1;
+            };
+        });
+    </script>
+</head>
+
+<body ng-app="home" ng-controller="homeController">
+    <h1>Notec</h1>
+    <div ng-repeat="doc in data">
+        <h2>{{doc.title}}</h2>
+            {{doc.body}}
+    </div>
+</body>
+</html>
