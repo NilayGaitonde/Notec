@@ -34,7 +34,8 @@
     <h1>Notec</h1>
     <div ng-repeat="doc in data">
         <h2>{{doc.title}}</h2>
-            {{doc.body}}
+        <p>Date Created: {{doc.dateCreated}}</p>
+        <a ng-href="/view/noteEdit.html?id={{doc._id}}"><button>Edit</button></a>
     </div>
 </body>
 </html>

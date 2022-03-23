@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Notes = require("../model/note");
 const express = require("express");
 const bodyParser = require("body-parser")
-const MongoClient = require("mongodb").MongoClient;
+const MongoClient = require("mongodb");
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 

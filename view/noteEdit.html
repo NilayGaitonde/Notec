@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
+    <title>View Your note</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                hash[1] = unescape(hash[1]);
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+
+            return vars;
+        }
+        console.log('http://localhost:3001/view/' + getUrlVars()["id"]);
+        var app = angular.module("notes", []).controller("noteController", function ($scope, $http) {
+            $scope.note = {}
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3001/view/' + getUrlVars()["id"]
+            }).then(function (httpresponse) {
+                $scope.note = httpresponse.data;
+                console.log($scope.note);
+            });
+            $scope.removeHTML = function (str) {
+            var tmp = document.createElement("DIV");
+            tmp.innerHTML = str;
+            return tmp.textContent || tmp.innerText || "";
+            }
+            $scope.convertToMD = function () {
+                console.log();
+                document.getElementById('output').innerHTML = $scope.note.body;
+            };
+        });
+    </script>
+</head>
+
+<body ng-app="notes" ng-controller="noteController">
+    <h1>title:</h1><br>
+    <input type="text" name="title" id="title" ng-model="note.title">
+    <h1>Body:</h1>
+    <textarea id="body" name="body" ng-model="note.body" rows="10" cols="50"></textarea>
+    </div>
+</body>
+
+</html>
