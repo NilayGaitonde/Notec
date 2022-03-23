@@ -56,7 +56,7 @@ app.get('/view/:id',function(req,res){
     });
 });
 app.get('/index',async(req,res)=> {
-    MongoClient.connect("mongodb://localhost:27017/college",function(err,db){
+    MongoClient.MongoClient.connect("mongodb://localhost:27017/college",function(err,db){
         if (err) throw err
         dbo = db.db("college");
         dbo.collection("notec").find({}).toArray(function(err,result){

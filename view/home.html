@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="new_style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <script>
@@ -31,11 +32,21 @@
 </head>
 
 <body ng-app="home" ng-controller="homeController">
+    <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button>
+          New Note
+      </button>
+    </form>
+  </div>
+</nav>
     <h1>Notec</h1>
-    <div ng-repeat="doc in data">
-        <h2>{{doc.title}}</h2>
-        <p>Date Created: {{doc.dateCreated}}</p>
-        <a ng-href="/view/noteEdit.html?id={{doc._id}}"><button>Edit</button></a>
+    <div id="home_doc" ng-repeat="doc in data">
+        <h2>{{doc.title}}</h2><p>Date Created: {{doc.dateCreated}}</p>
+        <a ng-href="/view/noteEdit.html?id={{doc._id}}"><button>Edit</button><button>delete</button></a>
     </div>
 </body>
 </html>
