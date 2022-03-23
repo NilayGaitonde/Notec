@@ -45,7 +45,7 @@
 <body style="background-color: #240656;"ng-app="login" ng-controller="loginController">
     <div align="center" class="login">
         <form name="userForm" novalidate ng-submit="submitForm()">
-            <p>LogIn</p>
+            <p>Login</p>
             <label for="email">Email:</label>
             <input type="email" name="email" ng-model="user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
             <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error">Wrong
