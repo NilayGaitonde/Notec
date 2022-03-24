@@ -31,13 +31,19 @@
                     body: $scope.markdown,
                     unedited: $scope.note.body
                 };
-                console.log($scope.note);
+            $scope.shouldShare = false
             $http({
                 method: 'GET',
                 url: 'http://localhost:3001/view/' + getUrlVars()["id"]
             }).then(function (httpresponse) {
+                // console.log("GOT DATA");
                 $scope.note = httpresponse.data;
-                console.log($scope.note);
+                $scope.shared_id = $scope.note.shared_id;
+                console.log($scope.note.shared_id);
+                if($scope.shared_id.indexOf(window.localStorage.getItem("email"))!=-1){
+                    $scope.shouldShare = true
+                }
+                console.log($scope.shouldShare);
             });
             $scope.convertToMD = function () {
                 $scope.markdown = marked.parse(document.getElementById("body").value);
@@ -49,7 +55,7 @@
                     title: $scope.note.title,
                     unedited: $scope.note.unedited
                 };
-                console.log($scope.note);
+                // console.log($scope.note);
                 console.log('http://localhost:3001/update/' + getUrlVars()["id"]);
                 $http({
                     method: 'POST',
@@ -67,7 +73,7 @@
 </head>
 
 <body>
-    <div ng-app="notes" ng-controller="noteController">
+    <div ng-app="notes" ng-controller="noteController" ng-show="shouldShare">
         <!-- <form name="noteForm" ng-submit="save()"></form> -->
         Change title:<br>
         <input type="text" name="title" id="title" ng-model="note.title"><br><br>

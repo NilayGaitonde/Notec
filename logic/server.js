@@ -29,11 +29,11 @@ app.post('/new',function(req,res){
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var data = {
         title: request.title,
-        author: "nilay0160@gmail.com",
+        author: request.author,
         dateCreated: date,
-        shared: false,
+        shared: request.shared,
         unedited: request.unedited,
-        shared_id:[]
+        shared_id:request.shared_id
     }
     console.log(data)
     db.collection('notec').insertOne(data,function(err,result){
@@ -69,11 +69,14 @@ app.post('/update/:id',function(req,res){
     });
 });
 
-app.get('/index',async(req,res)=> {
+app.get('/index/:email',async(req,res)=> {
     MongoClient.MongoClient.connect("mongodb://localhost:27017/college",function(err,db){
+        email = req.params.email;
+        console.log(req.params.email);
         if (err) throw err
         dbo = db.db("college");
-        dbo.collection("notec").find({}).toArray(function(err,result){
+        // $or:[{author:window.localStorage.getItem("email")},{shared_id:{$in:[localStorage.getItem("email")]}}]
+        dbo.collection("notec").find({$or:[{author:email},{shared_id:{$in:[email]}}]}).toArray(function(err,result){
             if (err) throw err
             console.log(result)
             res.send(result)

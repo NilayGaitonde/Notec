@@ -12,8 +12,13 @@
     <script>
         var app = angular.module("notes", []).controller("noteController", function ($scope, $http) {
             $scope.shared = false
-            $scope.shareDocument = function(){
+            $scope.sharedID=[]
+            $scope.toggleShare = function(){
                 $scope.shared = !$scope.shared
+            }
+            $scope.addShare = function() {
+                $scope.sharedID.push(document.getElementById("email").value)
+                console.log($scope.sharedID);
             }
             $scope.convertToMD = function () {
                 $scope.markdown = marked.parse(document.getElementById("body").value);
@@ -26,6 +31,9 @@
                 $scope.note = {
                     title: $scope.title,
                     unedited: $scope.body,
+                    shared:$scope.shared,
+                    author:window.localStorage.getItem("email"),
+                    shared_id:$scope.sharedID,
                     shared:$scope.shared
                 };
                 console.log($scope.note);
@@ -47,8 +55,8 @@
 <body ng-app="notes" ng-controller="noteController">
     <form ng-submit="saveForm()" novalidate name="form">
         Title: <br> <input type="text" name="title" id="title" ng-model="title"><br>
-        <input type="checkbox" name="shareDoc" id="shareDoc" ng-click="shareDocument()"> <label for="shareDocLabel">Share Doc</label>
-        <div ng-if=shared><input type="text" name="email" id="email">input:su</div>
+        <input type="checkbox" name="shareDoc" id="shareDoc" ng-click="toggleShare()"> <label for="shareDocLabel">Share Doc</label>
+        <div ng-if=shared><input type="text" name="email" id="email"><input type="button" value="share" ng-click="addShare()"></div>
         <br>
         Your Notes! <br>
         <textarea name="body" id="body" cols="30" rows="10" ng-model="body" ng-change="convertToMD()"></textarea>

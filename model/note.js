@@ -19,6 +19,10 @@ const notesSchema = new mongoose.Schema({
     shared_id:{
         type:Array,
         default:[]
+    },
+    unedited:{
+        type:String,
+        required:true,
     }
 });
 module.exports = mongoose.model('notes',notesSchema);

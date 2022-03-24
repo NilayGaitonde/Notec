@@ -11,10 +11,11 @@
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <script>
         var app = angular.module("home", []).controller("homeController", function ($scope, $http) {
+            $scope.email=window.localStorage.getItem("email")
             $scope.i = 0;
             $http({
                 method: 'GET',
-                url: 'http://localhost:3001/index',
+                url: 'http://localhost:3001/index/'+$scope.email,
             }).then(function successCallback(response) {
                 $scope.data = response.data;
             }, function errorCallback(response) {
