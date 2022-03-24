@@ -32,6 +32,18 @@ textarea {
       height: 2rem;
       width:30rem;
   }
+  .button
+  {
+    margin-left: 5px;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #8f15c7 20%, #141d6d 91%);
+    color: #ffffff;
+    font-family: 'Ubuntu', sans-serif;
+    border-radius:2rem;
+    padding: 0.2rem 5rem;
+    font-size: 19px;
+    text-decoration: none;
+  }
   button{
     margin-left: 5px;
     cursor: pointer;

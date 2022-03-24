@@ -11,42 +11,50 @@
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <script>
         var app = angular.module("home", []).controller("homeController", function ($scope, $http) {
-            $scope.i=0;
+            $scope.i = 0;
             $http({
                 method: 'GET',
                 url: 'http://localhost:3001/index',
             }).then(function successCallback(response) {
                 $scope.data = response.data;
-                console.log($scope.data);
             }, function errorCallback(response) {
                 console.log(response);
             });
-            $scope.convertToMD = function (id) {
-                console.log($scope.i);
-                console.log(id);
-                document.getElementById(id).innerHTML = $scope.data[$scope.i].body;
-                $scope.i=$scope.i+1;
-            };
+            $scope.delete = function (id) {
+                console.log('http://localhost:3001/delete/' + id,);
+                $http({
+                    method: 'GET',
+                    url: 'http://localhost:3001/delete/' + id,
+                }).then(function successCallback(response) {
+                    $scope.data = response.data;
+                    console.log($scope.data);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+                if (window.confirm('Your note is deleted')) {
+                    window.location = '/view/home.html';
+                }
+            }
         });
     </script>
 </head>
 
 <body ng-app="home" ng-controller="homeController">
     <nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-      <button>
-          New Note
-      </button>
-    </form>
-  </div>
-</nav>
+        <div class="container-fluid">
+            <form class="d-flex">
+                <a href="/view/noteNew.html" class="button">New Note</a>
+                <a href="/view/login.html" class = "button">Login</a>
+                <a href="/view/signin.html" class = "button">Sign In</a>
+            </form>
+        </div>
+    </nav>
     <h1>Notec</h1>
     <div id="home_doc" ng-repeat="doc in data">
-        <h2>{{doc.title}}</h2><p>Date Created: {{doc.dateCreated}}</p>
-        <a ng-href="/view/noteEdit.html?id={{doc._id}}"><button>Edit</button><button>delete</button></a>
+        <h2>{{doc.title}}</h2>
+        <p>Date Created: {{doc.dateCreated}}</p>
+        <a ng-href="/view/noteEdit.html?id={{doc._id}}"><button>Edit</button></a><button ng-click="delete(doc._id)">Delete</button></a>
     </div>
 </body>
+
 </html>

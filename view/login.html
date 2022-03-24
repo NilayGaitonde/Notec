@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Login</title>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <link rel="stylesheet" href="style_login.css">
@@ -14,17 +13,22 @@
             $scope.submitForm = function () {
                 console.log("Hello world");
                 if ($scope.userForm.$valid) {
-                    alert("Form is valid");
                     console.log($scope.user);
                     $http({
                         method: 'POST',
                         url: 'http://localhost:3000/login',
                         data: $scope.user
                     }).then(function (httpresponse) {
-                        console.log('response:' + httpresponse);
-                    })
-                }
-                else {
+                        console.log('response:' + httpresponse.status);
+                        if (httpresponse.status == 200) {
+                            if (window.confirm('You are logged in')) {
+                                window.location = 'home.html';
+                                window.localStorage.setItem('email',$scope.user.email);
+                                console.log(window.localStorage.getItem('email'))
+                            }
+                        }
+                    });
+                }else {
                     alert("Form is invalid");
                 }
             };
@@ -42,20 +46,21 @@
 
 </head>
 
-<body style="background-color: #240656;"ng-app="login" ng-controller="loginController">
+<body style="background-color: #240656;" ng-app="login" ng-controller="loginController">
     <h1>Notec</h1>
     <div align="center" class="login">
         <form name="userForm" novalidate ng-submit="submitForm()">
             <p>Login</p>
             <label for="email">Email:</label>
-            <input type="email" name="email" ng-model="user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+            <input type="email" name="email" ng-model="user.email"
+                ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
             <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error">Wrong
                 pattern</span><br /><br />
             <label for="password">Password:</label>
             <input type="{{passType}}" name="password" ng-model="user.password"
                 ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/">
-            <input style="background-color:rgba(255, 255, 255, 0);" type="checkbox" name="passwordVisible" id="passwordVisible" ng-model="passwordVisible"
-                ng-click="showHidePassword()" /><br>
+            <input style="background-color:rgba(255, 255, 255, 0);" type="checkbox" name="passwordVisible"
+                id="passwordVisible" ng-model="passwordVisible" ng-click="showHidePassword()" /><br>
             <button type="submit">Submit</button>
         </form>
     </div>

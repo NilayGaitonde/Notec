@@ -4,7 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser")
 const MongoClient = require("mongodb");
 const cors = require("cors")
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser");
+// const { request } = require("http");
 
 const app = new express()
 app.listen(3001,function(err){
@@ -28,10 +29,10 @@ app.post('/new',function(req,res){
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var data = {
         title: request.title,
-        body: request.body,
         author: "nilay0160@gmail.com",
         dateCreated: date,
         shared: false,
+        unedited: request.unedited,
         shared_id:[]
     }
     console.log(data)
@@ -55,6 +56,19 @@ app.get('/view/:id',function(req,res){
         res.send(result);
     });
 });
+app.post('/update/:id',function(req,res){
+    console.log("update");
+    mongoose.connect("mongodb://localhost:27017/college");
+    var db = mongoose.connection;
+    db.on('error',console.error.bind(console,'connection error:'));
+    db.once('open',function(){console.log("Connection succeeded");});
+    db.collection("notec").updateOne({_id:new MongoClient.ObjectID(req.params.id)},{$set:{title:req.body.title,nedited:req.body.unedited}},function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send('200')
+    });
+});
+
 app.get('/index',async(req,res)=> {
     MongoClient.MongoClient.connect("mongodb://localhost:27017/college",function(err,db){
         if (err) throw err
@@ -65,6 +79,18 @@ app.get('/index',async(req,res)=> {
             res.send(result)
         });
     });
+});
+app.get('/delete/:id',function(req,res){
+    console.log("delete");
+    mongoose.connect("mongodb://localhost:27017/college");
+    var db = mongoose.connection;
+    db.on('error',console.error.bind(console,'connection error:'));
+    db.once('open',function(){console.log("Connection succeeded");});
+    db.collection("notec").deleteOne({_id:new MongoClient.ObjectId(req.params.id)},function(err,result){
+        if(err) throw err;
+        console.log(result);
+        res.send('200')
+    })
 });
 // app.get('/sandbox',function(req,res){
 //     response.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8081");
