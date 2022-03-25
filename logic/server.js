@@ -63,7 +63,7 @@ app.post('/update/:id',function(req,res){
     db.on('error',console.error.bind(console,'connection error:'));
     db.once('open',function(){console.log("Connection succeeded");});
     db.collection("notec").updateOne({_id:new MongoClient.ObjectID(req.params.id)},{$set:{title:req.body.title,unedited:req.body.unedited,shared:req.body.shared,shared_id:req.body.shared_id}},function(err,result){
-        if(err) throw err;
+        if(err) throw err;x
         console.log(result);
         res.send('200')
     });
