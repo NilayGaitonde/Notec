@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-
+    <title>Signin</title>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <link rel="stylesheet" href="style_signin.css">
     <script>
@@ -14,8 +13,6 @@
             $scope.submitForm = function () {
                 console.log("Hello world");
                 if ($scope.userForm.$valid) {
-                    alert("Form is valid");
-                    console.log($scope.user);
                     $http({
                         method: 'POST',
                         url: 'http://localhost:3000/signin',
@@ -23,6 +20,8 @@
                     }).then(function (httpresponse) {
                         console.log('response:' + httpresponse);
                     })
+                    window.localStorage.setItem("email",$scope.user.email);
+                    window.location="/view/home.html";
                 }
                 else {
                     alert("Form is invalid");
@@ -89,6 +88,7 @@
         <label for="checkbox" ng-if="passwordVisible" {text-align: left;}>Hide password</label>
         <label for="checkbox" ng-if="!passwordVisible"{text-align: left;}>Show password</label>
         <br><span
+        <span
             ng-show="userForm.password.$touched && userForm.password.$error.pattern && userForm.password.$error.pattern"
             class="error"><br>Password must contain at least one letter and one number, and at least 8
             characters</span><br />
@@ -107,8 +107,8 @@
         <span ng-show="userForm.phone.$touched && userForm.phone.$error.pattern" class="error"><br>Wrong
             pattern</span><br /><br />
 
-        <button class="button" type="submit">Submit</button>
-
+        <button type="submit">Submit</button>
+        <a href="/view/login.html">Been here before</a>
     </form>
 
 </body>

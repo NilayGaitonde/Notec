@@ -15,6 +15,7 @@
             $scope.sharedID = []
             $scope.toggleShare = function () {
                 $scope.shared = !$scope.shared
+                $scope.sharedID=[];
             }
             $scope.addShare = function () {
                 $scope.sharedID.push(document.getElementById("email").value)
