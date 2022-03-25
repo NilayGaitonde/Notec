@@ -75,10 +75,10 @@
                     data: $scope.note,
                 }).then(function (httpresponse) {
                     console.log('response:' + httpresponse.status);
+                    if (httpresponse.status == 200) {
+                        window.location = '/view/home.html';
+                    }
                 })
-                // if (window.confirm('Your note is saved')) {
-                //     window.location = '/view/home.html';
-                // }
             };
         });
     </script>
@@ -86,12 +86,11 @@
 
 <body>
     <div ng-app="notes" ng-controller="noteController" ng-show="shouldShare">
-        <!-- <form name="noteForm" ng-submit="save()"></form> -->
         Change title:<br>
         <input type="text" name="title" id="title" ng-model="note.title"><br><br>
-        <input  type="checkbox" class="chk" name="shareDoc" id="shareDoc" ng-click="toggleShare()" checked=shared><label
+        <input type="checkbox" class="chk" name="shareDoc" id="shareDoc" ng-click="toggleShare()" checked=shared><label
             for="shareDocLabel">Share Documenet</label>
-        <div ng-if=shared><input  type="text" name="email" id="email"><button class="button" type="button" value="share"
+        <div ng-if=shared><input type="text" name="email" id="email"><button class="button" type="button" value="share"
                 ng-click="addShare()">Share</button></div><br>
         Shared with {{sharedID}}<br>
         <br>Edit your notes here:<br>
@@ -100,7 +99,6 @@
         <div id="output" ng-init="convertToMD()"></div><br>
         <br><br>
         <button class="button" type="submit" ng-click="save()">Submit</button>
-        <button class="button" type="reset">Reset</button>
     </div>
 </body>
 
