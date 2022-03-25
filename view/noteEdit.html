@@ -27,11 +27,20 @@
         var app = angular.module("notes", []).controller("noteController", function ($scope, $http) {
             $scope.note = {}
             $scope.note = {
-                    title: $scope.note.title,
-                    body: $scope.markdown,
-                    unedited: $scope.note.body
-                };
-            $scope.shouldShare = false
+                title: $scope.note.title,
+                body: $scope.markdown,
+                unedited: $scope.note.body,
+            };
+            $scope.shared = false
+            $scope.sharedID = []
+            $scope.toggleShare = function () {
+                $scope.shared = !$scope.shared
+                $scope.sharedID = [];
+            }
+            $scope.addShare = function () {
+                $scope.sharedID.push(document.getElementById("email").value)
+                console.log($scope.sharedID);
+            }
             $http({
                 method: 'GET',
                 url: 'http://localhost:3001/view/' + getUrlVars()["id"]
@@ -39,8 +48,9 @@
                 // console.log("GOT DATA");
                 $scope.note = httpresponse.data;
                 $scope.shared_id = $scope.note.shared_id;
+                $scope.shared = $scope.note.shared;
                 console.log($scope.note.shared_id);
-                if($scope.shared_id.indexOf(window.localStorage.getItem("email"))!=-1){
+                if (($scope.shared_id.indexOf(window.localStorage.getItem("email")) != -1 || $scope.note.author == window.localStorage.getItem("email")) && $scope.note.shared) {
                     $scope.shouldShare = true
                 }
                 console.log($scope.shouldShare);
@@ -53,20 +63,22 @@
                 console.log("Hello world");
                 $scope.note = {
                     title: $scope.note.title,
-                    unedited: $scope.note.unedited
+                    unedited: $scope.note.unedited,
+                    shared: $scope.shared,
+                    shared_id: $scope.shared_id,
                 };
-                // console.log($scope.note);
+                console.log($scope.note);
                 console.log('http://localhost:3001/update/' + getUrlVars()["id"]);
                 $http({
                     method: 'POST',
                     url: 'http://localhost:3001/update/' + getUrlVars()["id"],
-                    data: $scope.note
+                    data: $scope.note,
                 }).then(function (httpresponse) {
-                    console.log('response:' + httpresponse);
+                    console.log('response:' + httpresponse.status);
                 })
-                if (window.confirm('Your note is saved')) {
-                    window.location = '/view/home.html';
-                }
+                // if (window.confirm('Your note is saved')) {
+                //     window.location = '/view/home.html';
+                // }
             };
         });
     </script>
@@ -77,7 +89,12 @@
         <!-- <form name="noteForm" ng-submit="save()"></form> -->
         Change title:<br>
         <input type="text" name="title" id="title" ng-model="note.title"><br><br>
-        Edit your notes here:<br>
+        <input type="checkbox" name="shareDoc" id="shareDoc" ng-click="toggleShare()" checked=shared><label
+            for="shareDocLabel">Share Doc</label>
+        <div ng-if=shared><input type="text" name="email" id="email"><input type="button" value="share"
+                ng-click="addShare()"></div><br>
+        Shared with {{sharedID}}<br>
+        <br>Edit your notes here:<br>
         <textarea id="body" name="body" ng-model="note.unedited" rows="10" cols="50"
             ng-change="convertToMD()"></textarea>
         <div id="output" ng-init="convertToMD()"></div><br>
@@ -86,4 +103,5 @@
         <button type="reset">Reset</button>
     </div>
 </body>
+
 </html>

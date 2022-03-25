@@ -3,8 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const sha256 = require("sha256");
 
-var userEmail = "";
 const app = new express()
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: true}));
@@ -43,7 +43,7 @@ app.post('/signin',function(req,res){
         request.firstName,
         request.lastName,
         request.email,
-        request.password,
+        sha256(request.password),
         request.phone,
         date
     ];
@@ -58,7 +58,7 @@ app.post('/signin',function(req,res){
 app.post('/login',function(req,res){
     request = req.body
     console.log(request);
-    conn.query(`SELECT * FROM users WHERE emailID = ? AND password = ? `,[request.email,request.password],function(err,result){
+    conn.query(`SELECT * FROM users WHERE emailID = ? AND password = ? `,[request.email,sha256(request.password)],function(err,result){
         if(err) throw err;
         else if (result.length == 0){
             res.status(300)

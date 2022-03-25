@@ -22,13 +22,13 @@
                         console.log('response:' + httpresponse.status);
                         if (httpresponse.status == 200) {
                             if (window.confirm('You are logged in')) {
-                                window.location = 'home.html';
-                                window.localStorage.setItem('email',$scope.user.email);
+                                window.location = "/view/home.html";
+                                window.localStorage.setItem('email', $scope.user.email);
                                 console.log(window.localStorage.getItem('email'))
                             }
                         }
                     });
-                }else {
+                } else {
                     alert("Form is invalid");
                 }
             };
@@ -58,8 +58,8 @@
                 pattern</span><br /><br />
             <label for="password">Password:</label>
             <input type="{{passType}}" name="password" ng-model="user.password"
-                ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/">
-            <input style="background-color:rgba(255, 255, 255, 0);" type="checkbox" name="passwordVisible"
+                ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"><br>
+            See password:<input style="background-color:rgba(255, 255, 255, 0);" type="checkbox" name="passwordVisible"
                 id="passwordVisible" ng-model="passwordVisible" ng-click="showHidePassword()" /><br>
             <button type="submit">Submit</button>
         </form>

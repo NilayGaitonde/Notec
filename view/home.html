@@ -12,12 +12,22 @@
     <script>
         var app = angular.module("home", []).controller("homeController", function ($scope, $http) {
             $scope.email=window.localStorage.getItem("email")
+            $scope.message = "Let's start making some notes!!";
             $scope.i = 0;
+            if($scope.email==null){
+                window.location="/view/signin.html";
+            }
             $http({
                 method: 'GET',
                 url: 'http://localhost:3001/index/'+$scope.email,
             }).then(function successCallback(response) {
                 $scope.data = response.data;
+                if($scope.data.length != 0){
+                    $scope.message = "You have "+$scope.data.length+" notes!";
+                }
+                else{
+                    $scope.message = "Let's start making some notes!!";
+                }
             }, function errorCallback(response) {
                 console.log(response);
             });
@@ -42,15 +52,17 @@
 
 <body ng-app="home" ng-controller="homeController">
     <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
+        <div class="container-fluid" ng-init="checkLogin()">
             <form class="d-flex">
                 <a href="/view/noteNew.html" class="button">New Note</a>
+                <!-- Keep these only if you want to it already checks on it's own if the user is logged in or no -->
                 <a href="/view/login.html" class = "button">Login</a>
                 <a href="/view/signin.html" class = "button">Sign In</a>
             </form>
         </div>
     </nav>
     <h1>Notec</h1>
+    {{message}} <br>
     <div id="home_doc" ng-repeat="doc in data">
         <h2>{{doc.title}}</h2>
         <p>Date Created: {{doc.dateCreated}}</p>
