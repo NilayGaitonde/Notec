@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
-    <link rel="stylesheet" href="style_login.css">
+    <link rel="stylesheet" href="style_signin.css">
     <script>
         var app = angular.module("login", []).controller("loginController", function ($scope, $http) {
             $scope.submitForm = function () {
@@ -49,8 +49,8 @@
 <body style="background-color: #240656;" ng-app="login" ng-controller="loginController">
     <h1>Notec</h1>
     <div align="center" class="login">
-        <form name="userForm" novalidate ng-submit="submitForm()">
-            <p>Login</p>
+        <form id="login" name="userForm" novalidate ng-submit="submitForm()">
+            <h4>Login</h4>
             <label for="email">Email:</label>
             <input type="email" name="email" ng-model="user.email"
                 ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
@@ -58,10 +58,10 @@
                 pattern</span><br /><br />
             <label for="password">Password:</label>
             <input type="{{passType}}" name="password" ng-model="user.password"
-                ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"><br>
-            See password:<input style="background-color:rgba(255, 255, 255, 0);" type="checkbox" name="passwordVisible"
-                id="passwordVisible" ng-model="passwordVisible" ng-click="showHidePassword()" /><br>
-            <button type="submit">Submit</button>
+                ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/"><br> <br> <br>
+            See password:<input style="background-color:rgba(255, 255, 255, 0);" type="checkbox" id="chk" name="passwordVisible"
+                id="passwordVisible" ng-model="passwordVisible" ng-click="showHidePassword()" /><br><br><br>
+            <button class="button" type="submit">Submit</button>
         </form>
     </div>
 </body>

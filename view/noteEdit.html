@@ -89,18 +89,18 @@
         <!-- <form name="noteForm" ng-submit="save()"></form> -->
         Change title:<br>
         <input type="text" name="title" id="title" ng-model="note.title"><br><br>
-        <input type="checkbox" name="shareDoc" id="shareDoc" ng-click="toggleShare()" checked=shared><label
-            for="shareDocLabel">Share Doc</label>
-        <div ng-if=shared><input type="text" name="email" id="email"><input type="button" value="share"
-                ng-click="addShare()"></div><br>
+        <input  type="checkbox" class="chk" name="shareDoc" id="shareDoc" ng-click="toggleShare()" checked=shared><label
+            for="shareDocLabel">Share Documenet</label>
+        <div ng-if=shared><input  type="text" name="email" id="email"><button class="button" type="button" value="share"
+                ng-click="addShare()">Share</button></div><br>
         Shared with {{sharedID}}<br>
         <br>Edit your notes here:<br>
         <textarea id="body" name="body" ng-model="note.unedited" rows="10" cols="50"
             ng-change="convertToMD()"></textarea>
         <div id="output" ng-init="convertToMD()"></div><br>
         <br><br>
-        <button type="submit" ng-click="save()">Submit</button>
-        <button type="reset">Reset</button>
+        <button class="button" type="submit" ng-click="save()">Submit</button>
+        <button class="button" type="reset">Reset</button>
     </div>
 </body>
 
