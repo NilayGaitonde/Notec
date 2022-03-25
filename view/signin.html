@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js'></script>
     <link rel="stylesheet" href="style_signin.css">
     <script>
@@ -40,16 +41,23 @@
     </script>
     <style>
         .error {
+
+            text-align: center;
+            font-weight:400;
             color: red;
-            font-weight: bold;
+
         }
 
         input.ng-pristine {
-            background-color: rgb(137, 237, 255);
+            background-color: #ffa2d898;
+        }
+        input.ng-touched{
+            background-color:#ffa2d898;
         }
 
-        input.ng-touched.ng-invalid {
-            background-color: rgb(212, 5, 5);
+        input.ng-touched.ng-invalid{
+
+            background-color: rgb(243, 76, 76);
         }
     </style>
 </head>
@@ -58,16 +66,16 @@
     <h1>Notec</h1>
     <div class="signin"> ></div>
     <form name="userForm" novalidate ng-submit="submitForm()">
-        <h4>Sign In</h4
+        <h4>Sign In</h4>
         <label for="firstName" {text-align: right;}>First Name:</label>
         <input class = "input" type="text" name="firstName" ng-model="user.firstName" ng-required="true">
-        <span ng-show="userForm.firstName.$touched && userForm.firstName.$error.required" class="error">First name is
+        <span ng-show="userForm.firstName.$touched && userForm.firstName.$error.required" class="error"><br>First name is
             required</span>
         <br /><br />
 
         <label for="lastName" br>Last Name:</label>
         <input class = "input" type="text" name="lastName" ng-model="user.lastName" ng-minlength="3" ng-maxlength="10">
-        <span ng-show="userForm.lastName.$touched && userForm.lastName.$error.minlength">A minimum of 3 characters are
+        <span class="error"ng-show="userForm.lastName.$touched && userForm.lastName.$error.minlength"><br>A minimum of 3 characters are
             required</span>
         <span ng-show="userForm.lastName.$touched && userForm.lastName.$error.maxlength" class="error">A maximum of 10
             characters are allowed</span>
@@ -76,37 +84,31 @@
         <label for="password" {text-align: right;}>Password:</label>
         <input class = "input" type="{{passType}}" name="password" ng-model="user.password"
             ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/">
-        <input class = "input" type="checkbox" name="passwordVisible" id="passwordVisible" ng-model="passwordVisible"
+        <br><input id= "chk" class = "input" type="checkbox" name="passwordVisible" id="passwordVisible" ng-model="passwordVisible"
             ng-click="showHidePassword()" />
         <label for="checkbox" ng-if="passwordVisible" {text-align: left;}>Hide password</label>
         <label for="checkbox" ng-if="!passwordVisible"{text-align: left;}>Show password</label>
-        <span
+        <br><span
             ng-show="userForm.password.$touched && userForm.password.$error.pattern && userForm.password.$error.pattern"
-            class="error">Password must contain at least one letter and one number, and at least 8
-            characters</span><br /><br />
+            class="error"><br>Password must contain at least one letter and one number, and at least 8
+            characters</span><br />
 
-        <label for="confirmPassword" {text-align: right;}>Confirm password:</label>
+        <label for="confirmPassword" {text-align: right;}>Confirm:</label>
         <input class = "input" type="password" name="cPassword" id="cPassword" ng-model="cPassword">
-        <span ng-show="cPassword!=user.password" class="error">Passwords do not match</span>
+        <span ng-show="cPassword!=user.password" class="error"><br>Passwords do not match</span>
         <br /><br />
         <label for="email">Email:</label>
         <input class = "input" type="email" name="email" ng-model="user.email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
-        <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error">Wrong
+        <span ng-show="userForm.email.$touched && userForm.email.$error.pattern" class="error"><br>Wrong
             pattern</span><br /><br />
 
         <label for="phone">Phone:</label>
         <input class = "input" type="text" name="phone" ng-model="user.phone" ng-pattern="/^[0-9]{10}$/">
-        <span ng-show="userForm.phone.$touched && userForm.phone.$error.pattern" class="error">Wrong
+        <span ng-show="userForm.phone.$touched && userForm.phone.$error.pattern" class="error"><br>Wrong
             pattern</span><br /><br />
 
-        <button type="submit">Submit</button>
+        <button class="button" type="submit">Submit</button>
 
-        <div class="details">
-        <h2>Your details are:</h2>
-        <p>Name: {{user.firstName}} {{user.lastName}}</p>
-        <p>Email: {{user.email}}</p>
-        <p>Phone: {{user.phone}}</p>
-        </div>
     </form>
 
 </body>

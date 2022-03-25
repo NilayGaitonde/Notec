@@ -1,49 +1,51 @@
 body{
-    align-items: center;
-    background-image: url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80');
-    font-family: 'Montserrat', sans-serif;
-    background-color: #240656;
-}
 
+    background: linear-gradient(to bottom, #0373cf 0%, #dd3d8d 100%);
+    background-attachment: fixed;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+
+}
+label {
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+}
+  
+#chk {
+
+    width:2rem;
+    margin:10 0 0 0;
+  
+  
+  }
 form{
+
+    border: solid 4px;
     margin-top: 2rem;
     padding: 2rem;
-    position: absolute;
+    position:absolute;
     transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
     background-color: #ffffff;
     width: 600px;
-    height: 700px;
+    min-height: 700px;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14); 
 }
 h1{
     color:white;
+    font-weight:100;
     text-align: center;
-    font-size:4rem;
+    font-size:5rem;
     font-family:monospace;
 }
-/* form {
 
-    background: rgb(255, 255, 255);
-    padding: 1rem;
-    height: 700px;
-    width: 700px;
-    border-radius: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-    box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    position: relative;
-    transition: all 0.2s ease-in-out;
-} */
 form h4 {
     text-align: center;
     font-weight: 500;
-    color: rgb(83, 5, 94);
+    color: rgb(218, 40, 173);
     opacity: 0.7;
     font-size: 3rem;
     margin-top: 0;
@@ -51,57 +53,55 @@ form h4 {
   }
 form input {
 
-    width: 200px;
-    padding: 1em;
-    margin-bottom: 2em;
+    border: 1px solid ;
+    width: 300px;
+    padding: 1rem;
+    margin-bottom: 1em;
     border: none;
     border-left: 1px solid rgba(255, 255, 255, 0.3);
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5000px;
-    -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-
-    color: #fff;
+    font-size:15px;
     font-family: Montserrat, sans-serif;
     font-weight: 500;
     color: #000000;
     transition: all 0.2s ease-in-out;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    margin-left:2rem;
+    margin-left:1rem;
   }
 
-  button{
-    
+  .button {
+    background-color: #ffa2d898;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
     cursor: pointer;
-    background-image: linear-gradient(to right, #8b0967 20%, #3c0891 71%);
-    color: #ffffff;
-    font-family: 'Ubuntu', sans-serif;
-    border-radius:2rem;
-    padding: 0.2rem 5rem;
-
-    font-size: 19px;
-}
-
-.details {
-
-    color: rgb(45, 3, 51);
-    font-weight: 500;
-    opacity: 0.7;
-    font-size: 1.1rem;
-    margin-top: -20;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* .heading {
-    font-weight: 800;
-    color: rgb(83, 5, 94);
-    opacity: 0.7;
-    font-size: 3rem;
-    margin-top: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    font-weight: 600;
+    font-size: 22px;
+    padding: 0 18px;
+    line-height: 50px;
     text-align: center;
-} */
-
-/* .input {
-    align-items: center;
-} */
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button:hover {
+    background-color: #fff;
+  }
+  
+  .button:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  
+  @media (min-width: 768px) {
+    .button {
+      min-width: 120px;
+      padding: 0 25px;
+    }
+  
+  }
