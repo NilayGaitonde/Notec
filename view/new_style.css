@@ -1,6 +1,7 @@
 body{
+  background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
     /* background-image: url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80'); */
-    background: linear-gradient(to bottom, #0373cf 0%, #dd3d8d 100%);
+    /* background: linear-gradient(to bottom, #0373cf 0%, #dd3d8d 100%); */
     background-attachment: fixed;
     color: #fff;
     font-family: Inter,sans-serif;
@@ -20,9 +21,7 @@ textarea {
     font-size: 16px;
     resize: none;
   }
-  #shareDoc{
-    
-  }
+  
   /* #buttons{
     display: table;
     margin: 0 auto;
@@ -35,21 +34,7 @@ textarea {
       height: 2rem;
       width:30rem;
   }
-  /* .button
-  {
-    margin-left: 5px;
-    cursor: pointer;
-    background-image: linear-gradient(to right, #8f15c7 20%, #141d6d 91%);
-    color: #ffffff;
-    font-family: 'Ubuntu', sans-serif;
-    border-radius:2rem;
-    padding: 0.2rem 5rem;
-    font-size: 19px;
-    text-decoration: none;
-  } */
 
-
-/* CSS */
 input.chk {
   width:2rem;
   margin:10 0 0 0;
@@ -58,9 +43,8 @@ input.chk {
 }
 
 
-/* CSS */
 .button {
-  background-color: #fbeee0;
+  background-color: #ffd1ed;
   border: 2px solid #422800;
   border-radius: 30px;
   box-shadow: #422800 4px 4px 0 0;
@@ -79,7 +63,11 @@ input.chk {
 }
 
 .button:hover {
-  background-color: #fff;
+  background-color: rgb(198, 239, 255);
+}
+#del:hover{
+  color: #fff;
+  background-color: rgb(235, 65, 102);
 }
 
 .button:active {
@@ -94,16 +82,7 @@ input.chk {
   }
 
 }
-  /* button{
-    margin-left: 5px;
-    cursor: pointer;
-    background-image: linear-gradient(to right, #8f15c7 20%, #141d6d 91%);
-    color: #ffffff;
-    font-family: 'Ubuntu', sans-serif;
-    border-radius:2rem;
-    padding: 0.2rem 5rem;
-    font-size: 19px;
-  } */
+
  h1{
   font-family: Inter,sans-serif;
   font-weight: 400;
@@ -117,13 +96,15 @@ nav{
     height: 3rem;
     background-color: rgba(12, 171, 211, 0);
 }
-#home_doc{
+.home_doc{
+
+    border:3px solid;
     display: inline-block;
-    margin:30px;
-    padding:10px;
+    margin:20px;
+    padding:20px;
     width: 30%;
-    border-radius:10px;
-    color: #7d0a81;
+    border-radius:20px;
+    color: #31032b;
     border-color: 1px solid rgba(255, 255, 255, 0.3);
     background-color: white;
 }

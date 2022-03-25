@@ -39,31 +39,13 @@
         });
     </script>
     <style>
-        .error {
 
-            text-align: center;
-            font-weight:400;
-            color: red;
-
-        }
-
-        input.ng-pristine {
-            background-color: #ffa2d898;
-        }
-        input.ng-touched{
-            background-color:#ffa2d898;
-        }
-
-        input.ng-touched.ng-invalid{
-
-            background-color: rgb(243, 76, 76);
-        }
     </style>
 </head>
 
 <body ng-app="signin" ng-controller="signinController">
     <h1>Notec</h1>
-    <div class="signin"> ></div>
+    <div class="signin" ></div>
     <form name="userForm" novalidate ng-submit="submitForm()">
         <h4>Sign In</h4>
         <label for="firstName" {text-align: right;}>First Name:</label>
@@ -107,8 +89,8 @@
         <span ng-show="userForm.phone.$touched && userForm.phone.$error.pattern" class="error"><br>Wrong
             pattern</span><br /><br />
 
-        <button type="submit">Submit</button>
-        <a href="/view/login.html">Been here before</a>
+        <button class="button" type="submit">Submit</button>
+        <a class="link" href="/view/login.html">Been here before</a>
     </form>
 
 </body>

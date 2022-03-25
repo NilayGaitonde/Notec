@@ -14,7 +14,7 @@ var conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     // YOUR DIFFERENT CONFIG GOES HERE
-    password: '1234',
+    password: 'password',
     database: 'notec'
 });
 conn.connect((err)=>{
