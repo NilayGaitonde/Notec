@@ -13,6 +13,8 @@
         var app = angular.module("notes", []).controller("noteController", function ($scope, $http) {
             $scope.shared = false
             $scope.sharedID = []
+            $scope.seeMarked =false
+            console.log($scope.seeMarked);
             $scope.toggleShare = function () {
                 $scope.shared = !$scope.shared
                 $scope.sharedID=[];
@@ -49,13 +51,17 @@
                     window.location = '/view/home.html';
                 }
             };
+            $scope.preview = function () {
+                console.log("Hello world");
+                $scope.seeMarked = !$scope.seeMarked
+            };
         })
     </script>
 </head>
 
 <body ng-app="notes" ng-controller="noteController">
-    <form ng-submit="saveForm()" novalidate name="form">
-        Title: <br> <input type="text" name="title" id="title" ng-model="title"><br>
+    <form novalidate name="form">
+        <br> <input type="text" name="title" id="title" ng-model="title"><br>
         <input type="checkbox" class="chk" name="shareDoc" id="shareDoc" ng-click="toggleShare()"> <label
             for="shareDocLabel">Share Document</label>
         <div ng-if=shared><input type="text" name="email" id="email">
@@ -63,14 +69,13 @@
         <button type="button" class="button"
                 ng-click="addShare()">Share</button></div>
         <br>
-        Your Notes! <br>
+        Write Your notes here.... <br>
+        <div id="output" ng-show="seeMarked"></div><br>
         <textarea name="body" id="body" cols="30" rows="10" ng-model="body" ng-change="convertToMD()"></textarea>
-        <div id="output"></div><br>
 
-        <button class="button" type="submit">Save</button>
+        <button class="button" type="submit" ng-click="saveForm()">Save</button>
         <button class="button" type="reset">Reset</button>
-
+        <button class="button" ng-click="preview()">Preview</button>
     </form>
 </body>
-
 </html>

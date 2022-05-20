@@ -1,46 +1,66 @@
 body{
-  background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+  background-image: linear-gradient(100deg, #fc5c7d, #6a82fb);
+  /* background-image: linear-gradient(to right, #fc5c7d, #6a82fb); */
     /* background-image: url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80'); */
     /* background: linear-gradient(to bottom, #0373cf 0%, #dd3d8d 100%); */
     background-attachment: fixed;
     color: #fff;
     font-family: Inter,sans-serif;
-    font-size:22px;
+    font-size:16px;
     text-align: center;
 
 }
 
 textarea {
+  position: sticky;
+  bottom: 0;
+  left: 0;
     width: 100%;
-    height: 30rem;
+    height: 20rem;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
     border-radius: 4px;
-    background-color: #f8f8f8;
     font-size: 16px;
     resize: none;
+    background-color:#ffffff;
+
   }
-  
+  #output{
+
+    border: 3px solid ;
+    border-radius: 4px;
+    background-color: #eee7d7;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 30rem;
+    color: black;
+
+  }
   /* #buttons{
     display: table;
     margin: 0 auto;
   } */
   input{
       text-align: center;
-      color: rgb(140, 10, 162);
-      font-size: 22px;
+      color: rgb(216, 0, 126);
+      font-size: 20px;
+      font-weight: bold;
       border-radius: 2rem;
-      height: 2rem;
-      width:30rem;
+      height: 30px;
+      width:40rem;
   }
 
 input.chk {
-  width:2rem;
-  margin:10 0 0 0;
-
-
+  width:20px;
+  height: 2rem;
+  padding: 1;
+  margin: 0;
+  vertical-align: bottom;
+  position: relative;
+  top: -1px;
 }
+
 
 
 .button {
@@ -52,9 +72,9 @@ input.chk {
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
-  font-size: 22px;
-  padding: 0 18px;
-  line-height: 50px;
+  font-size: 20px;
+  padding: 0 14px;
+  line-height: 40px;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -113,4 +133,15 @@ nav.button{
   height:2rem;
   font-size: 1rem;
     /* text-align: left; */
+}
+.shareButton {
+  background-color: #8c4caf;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 25px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
