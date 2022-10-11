@@ -52,7 +52,8 @@
                 $scope.shared_id = $scope.note.shared_id;
                 $scope.shared = $scope.note.shared;
                 console.log($scope.shared_id);
-                if (($scope.shared_id.indexOf(window.localStorage.getItem("email")) != -1 && $scope.note.shared) || ($scope.note.author == window.localStorage.getItem("email"))) {
+                // $scope.shared_id.indexOf(window.localStorage.getItem("email")) != -1
+                if (($scope.shared_id == window.localStorage.getItem("email") && $scope.note.shared) || ($scope.note.author == window.localStorage.getItem("email"))) {
                     $scope.shouldShare = true
                 }
                 console.log($scope.shared);
@@ -89,7 +90,7 @@
 </head>
 
 <body>
-    <div ng-app="notes" ng-controller="noteController" ng-show="shouldShare">
+    <div ng-app="notes" ng-controller="noteController" ng-if="shouldShare">
         <input type="text" name="title" id="title" ng-model="note.title"><p align="right"><button class="shareButton" ng-click="toggleShare()" id="shareDoc" name="shareDoc">Share Document</button></p>
         <div ng-if=shared><input type="text" name="email" id="email"><button class="button" type="button" value="share"
                 ng-click="addShare()">Share</button><br>

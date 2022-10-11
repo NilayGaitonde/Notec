@@ -11,9 +11,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors());
 var conn = mysql.createConnection({
-    host: 'localhost',
+    host: 'Nilays-MacBook-Air.local',
     user: 'root',
-    // YOUR DIFFERENT CONFIG GOES HERE
     password: '1234',
     database: 'notec'
 });
